@@ -1,0 +1,24 @@
+{
+  "name": "Fifteen Puzzle",
+  "short_name": "Fifteen",
+  "dir": "ltr",
+  "lang": "en",
+  "categories": [
+    "entertainment",
+    "games"
+  ],
+  "display": "standalone",
+  "orientation": "natural",
+  "theme_color": "#38bdf8",
+  "background_color": "#4abeed",
+  "description": "A PWA 15 Puzzle game",
+  "start_url": "https://eldarlrd.github.io/fifteen-puzzle/",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
