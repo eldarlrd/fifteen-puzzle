@@ -23,11 +23,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-# Yarn Classic
-.pnp.*
-.yarn/*
-.yarnrc.yml
-!.yarn/patches
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions

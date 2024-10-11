@@ -8,7 +8,7 @@
     "web game",
     "puzzle"
   ],
-  "packageManager": "yarn@4.5.0",
+  "packageManager": "yarn@1.22.22",
   "description": "A PWA 15 Puzzle game",
   "repository": "github:eldarlrd/fifteen-puzzle",
   "homepage": "https://eldarlrd.github.io/fifteen-puzzle",
