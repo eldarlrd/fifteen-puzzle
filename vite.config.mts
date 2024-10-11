@@ -13,7 +13,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       strategies: 'injectManifest',
       injectManifest: {
-        globPatterns: ['**/*.{html,css,js,png,svg,mp3,woff2,webmanifest}'],
+        globPatterns: ['**/*.{html,css,js,png,svg,opus,woff2,webmanifest}'],
       },
     })
   ],

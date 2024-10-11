@@ -7,5 +7,5 @@ declare const self: ServiceWorkerGlobalScope;
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-self.skipWaiting();
+void self.skipWaiting();
 clientsClaim();

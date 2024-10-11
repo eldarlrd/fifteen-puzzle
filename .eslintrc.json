@@ -2,8 +2,7 @@
   "root": true,
   "env": {
     "browser": true,
-    "commonjs": true,
-    "es2021": true
+    "es2024": true
   },
   "extends": [
     "eslint:recommended",
@@ -30,24 +29,27 @@
     "sourceType": "module",
     "project": ["tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint", "no-relative-import-paths", "import", "n"],
+  "plugins": ["no-relative-import-paths"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": 2,
     "@typescript-eslint/no-unsafe-call": 0,
-    "@typescript-eslint/no-floating-promises": 0,
+    "@typescript-eslint/no-unused-vars": 2,
     "@typescript-eslint/no-confusing-void-expression": 0,
+    "@typescript-eslint/explicit-member-accessibility": 2,
     "@typescript-eslint/explicit-function-return-type": 2,
     "@typescript-eslint/consistent-type-imports": [2, { "fixStyle": "inline-type-imports" }],
     "no-relative-import-paths/no-relative-import-paths": [2, { "rootDir": "src", "prefix": "@" }],
     "import/order": [2, { "newlines-between": "always", "alphabetize": { "order": "asc" } }],
     "import/consistent-type-specifier-style": [2, "prefer-inline"],
     "import/extensions": [2, "ignorePackages"],
+    "import/no-named-as-default-member": 0,
     "import/no-useless-path-segments": 2,
+    "import/no-named-as-default": 0,
     "import/no-default-export": 2,
     "import/group-exports": 2,
     "n/no-extraneous-import": 0,
     "n/no-missing-import": 0,
     "no-unused-vars": 0,
+    "prefer-const": 2,
     "eqeqeq": 2
   }
 }

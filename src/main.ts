@@ -1,7 +1,7 @@
 /**
  * @license AGPL-3.0-only
  * Fifteen Puzzle - A 15 Puzzle Game
- * Copyright (C) 2023 Eldar Pashazade <eldarlrd@pm.me>
+ * Copyright (C) 2023-2024 Eldar Pashazade <eldarlrd@pm.me>
  *
  * This file is part of Fifteen Puzzle.
  *
@@ -27,14 +27,14 @@ import {
 } from '@arrow-js/core';
 
 import githubLogo from '@/assets/github.svg';
-import solvedAudio from '@/assets/solved.mp3';
+import solvedAudio from '@/assets/solved.opus';
 import '@/main.pcss';
 
 // Register Service Worker
 const registerSW = (): void => {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/fifteen-puzzle/sw.js', {
+      void navigator.serviceWorker.register('/fifteen-puzzle/sw.js', {
         scope: '/fifteen-puzzle/'
       });
     });
@@ -233,14 +233,14 @@ const colorSet = (): void => {
 // Checking for a Solution
 const check = (): void => {
   const modal = document.getElementById('modal');
-  const audio = new Audio(`${solvedAudio}`);
+  const audio = new Audio(solvedAudio);
   grid.show = grid.elementValue.every((v, i) => {
     if (v === grid.orderedIndex[i]) return true;
     return false;
   });
 
   if (grid.show) {
-    if (grid.volume) audio.play();
+    if (grid.volume) void audio.play();
     grid.volume = true;
     grid.ticking = false;
     modal?.classList.remove('hidden');
@@ -268,9 +268,9 @@ const template = t`
           <figcaption>Time</figcaption>
           <p class='w-20 min-w-max'>
             ${(): string =>
-              `${grid.minutes === 0 ? '' : grid.minutes + 'm'} ${
-                grid.seconds
-              }s`}
+              `${
+                grid.minutes === 0 ? '' : grid.minutes.toString() + 'm'
+              } ${grid.seconds.toString()}s`}
           </p>
         </time>
         <time class='text-end font-bold'>
@@ -303,9 +303,9 @@ const template = t`
             <figcaption>Time</figcaption>
             <p class='w-20 min-w-max'>
               ${(): string =>
-                `${grid.minutes === 0 ? '' : grid.minutes + 'm'} ${
-                  grid.seconds
-                }s`}
+                `${
+                  grid.minutes === 0 ? '' : grid.minutes.toString() + 'm'
+                } ${grid.seconds.toString()}s`}
             </p>
           </time>
           <time class='text-end font-bold'>
@@ -319,7 +319,7 @@ const template = t`
 
   <footer>
     <p class='m-6 flex select-none flex-col items-center justify-center text-center text-lg font-bold text-white drop-shadow-xl sm:text-xl md:text-2xl'>
-    © 2023 <a
+    © 2023 - 2024 <a
            class='flex items-center rounded justify-center gap-1 text-center transition-transform hover:scale-110'
            title='Go to the Source'
            target='_blank'
