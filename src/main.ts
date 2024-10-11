@@ -66,6 +66,7 @@ const gridLoop = (): void => {
     grid.orderedIndex.push(i);
     grid.elementValue.push(i);
   }
+
   shuffle();
 };
 
@@ -77,6 +78,7 @@ const shuffle = (): void => {
     grid.elementValue[i] = grid.elementValue[j] as number;
     grid.elementValue[j] = k;
   }
+
   grid.startTime = 0;
   grid.endTime = 0;
   grid.timeElapsed = 0;
@@ -99,6 +101,7 @@ const isSolvable = (): void => {
   }
 
   grid.isEvenRow = ~~(grid.elementValue.indexOf(16) / 4) % 2 === 0;
+
   if (
     (grid.isEvenRow && grid.inversions % 2 !== 0) ||
     (!grid.isEvenRow && grid.inversions % 2 === 0)
@@ -126,6 +129,7 @@ const assign = (): void => {
     `.key(e)
     );
   });
+
   match();
   check();
 };
@@ -134,6 +138,7 @@ const assign = (): void => {
 const move = (tileValue: number): void => {
   const tileIndex = grid.elementValue.indexOf(tileValue);
   const emptyTile = grid.elementValue.indexOf(16);
+
   let shiftLeft = emptyTile - 1;
   let shiftRight = emptyTile + 1;
 
@@ -197,6 +202,7 @@ const timeStart = (): void => {
     grid.ticking = true;
     grid.startTime = performance.now();
   }
+
   timeStop();
 };
 
@@ -217,6 +223,8 @@ const match = (): void => {
     if (v === grid.orderedIndex[i]) grid.matchingValue.push(v);
     grid.matchingValue.splice(grid.matchingValue.indexOf(v));
   });
+
+  timeStart();
   colorSet();
 };
 
@@ -321,10 +329,10 @@ const template = t`
     <p class='m-6 flex select-none flex-col items-center justify-center text-center text-lg font-bold text-white drop-shadow-xl sm:text-xl md:text-2xl'>
     © 2023 - 2024 <a
            class='flex items-center rounded justify-center gap-1 text-center transition-transform hover:scale-110'
-           title='Go to the Source'
+           title='Source'
            target='_blank'
            type='text/html'
-           rel='noopener noreferrer nofollow external author'
+           rel='author external noreferrer'
            href='https://github.com/eldarlrd/fifteen-puzzle'>
            <img
              class='h-6 w-6'
@@ -339,7 +347,6 @@ const template = t`
 // Watchers
 w(match);
 w(check);
-w(timeStart);
 gridLoop();
 registerSW();
 document.addEventListener('keydown', key => {
