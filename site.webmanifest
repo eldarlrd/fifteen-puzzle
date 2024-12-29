@@ -7,7 +7,7 @@
     "entertainment",
     "games"
   ],
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "natural",
   "theme_color": "#38bdf8",
   "background_color": "#4abeed",
