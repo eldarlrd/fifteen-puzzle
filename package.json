@@ -16,10 +16,10 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc -b && vite build",
     "preview": "vite preview",
     "deployer": "yarn build && gh-pages -b prod -m 'build(prod): deployment' -d dist",
-    "lint": "eslint src --ext .ts,.tsx --report-unused-disable-directives",
+    "lint": "eslint src --ext .ts,.tsx",
     "pretty": "prettier 'src/**/*.{ts,tsx,pcss}' --write",
     "format": "yarn lint --fix && yarn pretty"
   },

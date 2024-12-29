@@ -32,13 +32,12 @@ import '@/main.pcss';
 
 // Register Service Worker
 const registerSW = (): void => {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator)
     window.addEventListener('load', () => {
       void navigator.serviceWorker.register('/fifteen-puzzle/sw.js', {
         scope: '/fifteen-puzzle/'
       });
     });
-  }
 };
 
 // Reactive Variables
@@ -75,6 +74,7 @@ const shuffle = (): void => {
   for (let i = 15; i > 0; i--) {
     const j = ~~(Math.random() * (i + 1));
     const k = grid.elementValue[i] as number;
+
     grid.elementValue[i] = grid.elementValue[j] as number;
     grid.elementValue[j] = k;
   }
@@ -160,6 +160,7 @@ const move = (tileValue: number): void => {
       )
         return +v;
       else if (v === 16) return tileValue;
+
       return 16;
     })
   );
@@ -242,8 +243,10 @@ const colorSet = (): void => {
 const check = (): void => {
   const modal = document.getElementById('modal');
   const audio = new Audio(solvedAudio);
+
   grid.show = grid.elementValue.every((v, i) => {
     if (v === grid.orderedIndex[i]) return true;
+
     return false;
   });
 
@@ -355,6 +358,7 @@ document.addEventListener('keydown', key => {
 
 // Render
 const appElement = document.getElementById('app');
+
 if (appElement !== null) template(appElement);
 
 // Easter Egg

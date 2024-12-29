@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 // https://vitejs.dev/config
 export default defineConfig({
   base: '/fifteen-puzzle/',
+  resolve: { alias: { '@': '/src' } },
   plugins: [
     VitePWA({
       srcDir: 'src',
@@ -16,8 +17,5 @@ export default defineConfig({
         globPatterns: ['**/*.{html,css,js,png,svg,opus,woff2,webmanifest}'],
       },
     })
-  ],
-  resolve: {
-    alias: { '@': '/src' }
-  }
+  ]
 });
