@@ -12,7 +12,7 @@
   "theme_color": "#38bdf8",
   "background_color": "#4abeed",
   "description": "A PWA 15 Puzzle game",
-  "start_url": "https://eldarlrd.github.io/fifteen-puzzle/",
+  "start_url": "https://eldarlrd.is-a.dev/fifteen-puzzle/",
   "icons": [
     {
       "src": "favicon.png",
