@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitejs.dev/config
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
       injectManifest: {
         globPatterns: ['**/*.{html,css,js,png,svg,opus,woff2,webmanifest}'],
       },
-    })
+    }),
+    tailwindcss()
   ]
 });

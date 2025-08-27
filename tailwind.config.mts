@@ -1,8 +1,7 @@
-// https://v3.tailwindcss.com/docs/configuration
 export default {
   content: [
     'index.html',
-    'src/**/*.{ts,tsx}'
+    './src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
