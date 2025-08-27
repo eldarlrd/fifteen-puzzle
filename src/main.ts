@@ -170,6 +170,7 @@ const move = (tileValue: number): void => {
   grid.elementValue = newElements;
   grid.moves++;
   assign();
+  renderStats();
 };
 
 // Keyboard Controls
@@ -263,13 +264,13 @@ const check = (): void => {
 const renderStats = (): void => {
   const timeDisplay = document.querySelector('figure[aria-label="tracker"] p');
   const movesDisplay = document.querySelector(
-    'figure[aria-label="tracker"] p:nth-of-type(2)'
+    'figure[aria-label="tracker"] time:nth-of-type(2) p'
   );
   const modalTimeDisplay = document.querySelector(
     'figure[aria-label="modal-tracker"] p'
   );
   const modalMovesDisplay = document.querySelector(
-    'figure[aria-label="modal-tracker"] p:nth-of-type(2)'
+    'figure[aria-label="modal-tracker"] time:nth-of-type(2) p'
   );
 
   const timeString = `${grid.minutes === 0 ? '' : grid.minutes.toString() + 'm '}${grid.seconds.toString()}s`;
@@ -344,7 +345,7 @@ const render = (): void => {
       <p class='m-6 flex select-none flex-col items-center justify-center text-center text-lg font-bold text-white drop-shadow-xl sm:text-xl md:text-2xl'>
         © 2023 - 2025
         <a class='flex items-center rounded justify-center gap-1 text-center transition-transform hover:scale-110' title='Source' target='_blank' type='text/html' rel='author external noreferrer' href='https://github.com/eldarlrd/fifteen-puzzle'>
-          <i class='fa-brands fa-github' /> eldarlrd
+          eldarlrd
         </a>
       </p>
     </footer>
