@@ -16,21 +16,25 @@
 yarn
 ```
 ## Develop
-### Run Env.
+### Run Env
 ```sh
 yarn dev
 ```
-### Prod. Build
+### Prod Build
 ```sh
 yarn build
 ```
-### Preview Prod. Build
+### Preview Prod Build
 ```sh
 yarn preview
 ```
 ### Format Code (ESLint + Prettier)
 ```sh
 yarn format
+```
+### Cut Orphans (Knip)
+```sh
+yarn cut
 ```
 ## Deploy
 ```sh

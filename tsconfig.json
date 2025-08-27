@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "WebWorker"],
+    "lib": ["ESNext", "DOM", "WebWorker"],
     "tsBuildInfoFile": "node_modules/.tmp/tsconfig.tsbuildinfo",
     "skipLibCheck": true,
     "composite": true,

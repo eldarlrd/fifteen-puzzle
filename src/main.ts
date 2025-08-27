@@ -1,7 +1,7 @@
 /**
  * @license AGPL-3.0-only
  * Fifteen Puzzle - A 15 Puzzle Game
- * Copyright (C) 2023-2024 Eldar Pashazade <eldarlrd@pm.me>
+ * Copyright (C) 2023-2025 Eldar Pashazade <eldarlrd@pm.me>
  *
  * This file is part of Fifteen Puzzle.
  *
@@ -330,7 +330,7 @@ const template = t`
 
   <footer>
     <p class='m-6 flex select-none flex-col items-center justify-center text-center text-lg font-bold text-white drop-shadow-xl sm:text-xl md:text-2xl'>
-    © 2023 - 2024 <a
+    © 2023 - 2025 <a
            class='flex items-center rounded justify-center gap-1 text-center transition-transform hover:scale-110'
            title='Source'
            target='_blank'

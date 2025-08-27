@@ -11,8 +11,8 @@
   "packageManager": "yarn@1.22.22",
   "description": "A PWA 15 Puzzle game",
   "repository": "github:eldarlrd/fifteen-puzzle",
-  "homepage": "https://eldarlrd.github.io/fifteen-puzzle",
-  "author": "Eldar Pashazade <eldarlrd@pm.me> (https://eldarlrd.github.io)",
+  "homepage": "https://eldarlrd.is-a.dev/fifteen-puzzle",
+  "author": "Eldar Pashazade <eldarlrd@pm.me> (https://eldarlrd.is-a.dev)",
   "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -21,7 +21,8 @@
     "deployer": "yarn build && gh-pages -b prod -m 'build(prod): deployment' -d dist",
     "lint": "eslint src --ext .ts,.tsx",
     "pretty": "prettier 'src/**/*.{ts,tsx,pcss}' --write",
-    "format": "yarn lint --fix && yarn pretty"
+    "format": "yarn lint --fix && yarn pretty",
+    "cut": "knip --fix --cache"
   },
   "prettier": {
     "singleQuote": true,
@@ -48,6 +49,7 @@
     "eslint-plugin-no-relative-import-paths": "^1.5.3",
     "eslint-plugin-promise": "^6.1.1",
     "gh-pages": "^6.0.0",
+    "knip": "^5.63.0",
     "postcss": "^8.4.31",
     "postcss-advanced-variables": "^3.0.1",
     "postcss-extend": "^1.0.5",

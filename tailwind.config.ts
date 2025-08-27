@@ -1,6 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-
-// https://tailwindcss.com/docs/configuration
+// https://v3.tailwindcss.com/docs/configuration
 export default {
   content: [
     'index.html',
