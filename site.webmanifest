@@ -10,7 +10,7 @@
   "display": "fullscreen",
   "orientation": "natural",
   "theme_color": "#38bdf8",
-  "background_color": "#4abeed",
+  "background_color": "#38bdf8",
   "description": "A PWA 15 Puzzle game",
   "start_url": "https://eldarlrd.is-a.dev/fifteen-puzzle/",
   "icons": [
