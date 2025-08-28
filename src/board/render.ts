@@ -32,10 +32,58 @@ export class Renderer {
 
     if (!isEmpty)
       tile.addEventListener('click', () => {
-        this.game.moveTile(value);
+        // Push Multiple Tiles at Once
+        const slid = this.slideIfInLine(value);
+
+        if (!slid) this.game.moveTile(value);
       });
 
     return tile;
+  }
+
+  private slideIfInLine(clickedValue: number): boolean {
+    const values = this.game.state.elementValue;
+    const size = Math.sqrt(values.length) | 0;
+    const targetIndex = values.indexOf(clickedValue);
+    const emptyIndex = values.indexOf(EMPTY_TILE);
+
+    if (targetIndex < 0 || emptyIndex < 0) return false;
+
+    const sameRow = ~~(targetIndex / size) === ~~(emptyIndex / size);
+    const sameCol = targetIndex % size === emptyIndex % size;
+
+    if (!sameRow && !sameCol) return false;
+
+    const step =
+      sameRow ?
+        targetIndex < emptyIndex ?
+          -1
+        : 1
+      : targetIndex < emptyIndex ? -size
+      : size;
+
+    const startingMoves = this.game.state.moves;
+    let performedAny = false;
+
+    while (this.game.state.elementValue.indexOf(EMPTY_TILE) !== targetIndex) {
+      const current = this.game.state.elementValue;
+      const emptyIdx = current.indexOf(EMPTY_TILE);
+      const neighborIdx = emptyIdx + step;
+
+      if (neighborIdx < 0 || neighborIdx >= current.length) return false;
+
+      const moveVal = current[neighborIdx];
+
+      this.game.moveTile(moveVal);
+      performedAny = true;
+    }
+
+    if (performedAny) {
+      this.game.state.moves = startingMoves + 1;
+      this.updateDisplay();
+    }
+
+    return performedAny;
   }
 
   public createHtml(): string {
