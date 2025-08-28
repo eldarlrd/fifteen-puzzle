@@ -12,7 +12,7 @@
 
 ## Install
 ```sh
-bun
+bun i
 ```
 ## Develop
 ### Run Env

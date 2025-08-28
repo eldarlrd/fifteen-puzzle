@@ -53,4 +53,4 @@ const main = (): void => {
 document.addEventListener('DOMContentLoaded', main);
 
 // Easter Egg
-console.log('Now impossible to get the 14-15 one!');
+console.log('🤓 Now impossible to get the 14-15 one!');

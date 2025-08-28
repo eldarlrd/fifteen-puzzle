@@ -99,7 +99,7 @@ export class Renderer {
           <figure aria-label='tracker' class='flex select-none gap-6 rounded bg-tile-600 px-3.5 py-1 drop-shadow-md md:text-lg font-righteous'>
             <time class='text-center font-bold'>
               <figcaption>Time</figcaption>
-              <p class='min-w-max'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
+              <p class='w-12 tabular-nums'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
             </time>
             <time class='text-center font-bold'>
               <figcaption>Moves</figcaption>
@@ -158,7 +158,7 @@ export class Renderer {
             <figure aria-label='modal-tracker' class='flex select-none gap-6 rounded bg-tile-600 px-3.5 py-1 text-lg drop-shadow-md md:py-2 md:text-xl font-righteous'>
               <time class='text-center font-bold'>
                 <figcaption>Time</figcaption>
-                <p class='min-w-max'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
+                <p class='w-12 tabular-nums'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
               </time>
               <time class='text-center font-bold'>
                 <figcaption>Moves</figcaption>
