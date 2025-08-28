@@ -1,5 +1,26 @@
 @import 'tailwindcss';
 
-@theme {
+:root {
+  --correct-400: var(--color-emerald-400);
+  --surface-400: var(--color-sky-400);
+  --tile-400: var(--color-cyan-400);
+  --tile-600: var(--color-cyan-600);
+  --tile-700: var(--color-cyan-700);
+}
+
+[data-theme='alt'] {
+  --correct-400: var(--color-blue-400);
+  --surface-400: var(--color-fuchsia-400);
+  --tile-400: var(--color-purple-400);
+  --tile-600: var(--color-purple-600);
+  --tile-700: var(--color-purple-700);
+}
+
+@theme inline {
   --font-righteous: Righteous, sans-serif;
+  --color-tile-400: var(--tile-400);
+  --color-tile-600: var(--tile-600);
+  --color-tile-700: var(--tile-700);
+  --color-surface-400: var(--surface-400);
+  --color-correct-400: var(--correct-400);
 }

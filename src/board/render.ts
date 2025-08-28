@@ -23,7 +23,7 @@ export class Renderer {
       text-4xl font-bold text-white drop-shadow-sm transition-all duration-200
       hover:scale-95 sm:text-5xl md:text-6xl font-righteous
       ${isEmpty ? 'invisible' : ''}
-      ${isCorrectPosition ? 'bg-emerald-400' : 'bg-cyan-400'}
+      ${isCorrectPosition ? 'bg-correct-400' : 'bg-tile-400'}
     `
       .trim()
       .replace(/\s+/g, ' ');
@@ -95,45 +95,54 @@ export class Renderer {
       </header>
 
       <main class='flex flex-col items-center justify-center gap-4'>
-        <div class='flex w-80 items-center justify-between text-white sm:w-96 md:w-[32em]'>
-          <button id='shuffle-btn' class='rounded cursor-pointer select-none bg-cyan-600 px-6 py-4 font-bold drop-shadow-md transition-colors hover:bg-cyan-700 md:text-lg font-righteous'>
-            Shuffle
-          </button>
-          <figure aria-label='tracker' class='flex select-none gap-6 rounded bg-cyan-600 px-4 py-1 drop-shadow-md md:text-lg font-righteous'>
+        <div class='flex flex-wrap gap-1.5 w-80 items-center justify-end sm:justify-between text-white sm:w-96 md:w-[32em]'>
+          <figure aria-label='tracker' class='flex select-none gap-6 rounded bg-tile-600 px-3.5 py-1 drop-shadow-md md:text-lg font-righteous'>
             <time class='text-center font-bold'>
               <figcaption>Time</figcaption>
-              <p class='w-20 min-w-max'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
+              <p class='min-w-max'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
             </time>
             <time class='text-center font-bold'>
               <figcaption>Moves</figcaption>
               <p>${this.game.state.moves.toString()}</p>
             </time>
           </figure>
+
+          <div class='flex gap-1.5'>
+            <button id='theme-btn' title='Theme' class='rounded cursor-pointer select-none bg-tile-600 py-4 min-w-14 font-bold drop-shadow-md transition-colors hover:bg-tile-700 font-righteous'>
+              <i class='fa-solid fa-palette fa-fw fa-xl'></i>
+            </button>
+            <button id='theme-btn' title='Rules' class='rounded cursor-pointer select-none bg-tile-600 py-4 min-w-14 font-bold drop-shadow-md transition-colors hover:bg-tile-700 font-righteous'>
+              <i class='fa-solid fa-circle-info fa-fw fa-xl'></i>
+            </button>
+            <button id='shuffle-btn' class='rounded cursor-pointer select-none bg-tile-600 px-6 py-4 font-bold drop-shadow-md transition-colors hover:bg-tile-700 md:text-lg font-righteous'>
+              Shuffle
+            </button>
+          </div>
         </div>
 
-        <section class='grid h-80 w-80 grid-cols-4 grid-rows-4 gap-1 rounded bg-cyan-600 p-1 shadow-inner drop-shadow-md sm:h-96 sm:w-96 md:h-[32em] md:w-[32em]'>
+        <section class='grid h-80 w-80 grid-cols-4 grid-rows-4 gap-1 rounded bg-tile-600 p-1 shadow-inner drop-shadow-md sm:h-96 sm:w-96 md:h-[32em] md:w-[32em]'>
         </section>
       </main>
 
       <div id='modal' class='fixed inset-0 z-10 flex hidden h-full w-full items-center justify-center bg-black/75'>
-        <section class='flex h-64 w-80 flex-col items-center justify-center gap-6 rounded-md bg-sky-400 drop-shadow-2xl md:h-80 md:w-96'>
+        <section class='flex h-64 w-80 flex-col items-center justify-center gap-6 rounded-md bg-surface-400 drop-shadow-2xl md:h-80 md:w-96'>
           <p class='select-none text-3xl text-white md:text-4xl font-righteous'>
             Puzzle Solved!
           </p>
-          <div class='flex flex-col-reverse items-center justify-center gap-6 text-white'>
-            <button id='modal-shuffle-btn' class='rounded cursor-pointer select-none bg-cyan-600 px-6 py-4 text-lg font-bold drop-shadow-md transition-colors hover:bg-cyan-700 md:py-5 md:text-xl font-righteous'>
-              Shuffle
-            </button>
-            <figure aria-label='modal-tracker' class='flex select-none gap-6 rounded bg-cyan-600 px-4 py-1 text-lg drop-shadow-md md:py-2 md:text-xl font-righteous'>
+          <div class='flex flex-col items-center justify-center gap-6 text-white'>
+            <figure aria-label='modal-tracker' class='flex select-none gap-6 rounded bg-tile-600 px-3.5 py-1 text-lg drop-shadow-md md:py-2 md:text-xl font-righteous'>
               <time class='text-center font-bold'>
                 <figcaption>Time</figcaption>
-                <p class='w-20 min-w-max'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
+                <p class='min-w-max'>${formatTime(this.game.state.minutes, this.game.state.seconds)}</p>
               </time>
               <time class='text-center font-bold'>
                 <figcaption>Moves</figcaption>
                 <p>${this.game.state.moves.toString()}</p>
               </time>
             </figure>
+            <button id='modal-shuffle-btn' class='rounded cursor-pointer select-none bg-tile-600 px-6 py-4 text-lg font-bold drop-shadow-md transition-colors hover:bg-tile-700 md:py-5 md:text-xl font-righteous'>
+              Shuffle
+            </button>
           </div>
         </section>
       </div>
@@ -157,6 +166,7 @@ export class Renderer {
     if (!appElement) return;
 
     appElement.innerHTML = this.createHtml();
+    this.initTheme();
 
     document.getElementById('shuffle-btn')?.addEventListener('click', () => {
       this.game.reset();
@@ -167,6 +177,15 @@ export class Renderer {
       ?.addEventListener('click', () => {
         this.game.reset();
       });
+
+    document.getElementById('theme-btn')?.addEventListener('click', () => {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'alt' ? 'base' : 'alt';
+
+      if (next === 'alt') root.setAttribute('data-theme', 'alt');
+      else root.removeAttribute('data-theme');
+      localStorage.setItem('theme', next);
+    });
 
     this.update();
   }
@@ -238,5 +257,13 @@ export class Renderer {
 
     if (this.game.state.show) modal.classList.remove('hidden');
     else modal.classList.add('hidden');
+  }
+
+  private initTheme(): void {
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+
+    if (saved === 'alt') root.setAttribute('data-theme', 'alt');
+    else root.removeAttribute('data-theme');
   }
 }
