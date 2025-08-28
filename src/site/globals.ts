@@ -2,7 +2,6 @@ interface GameState {
   orderedIndex: number[];
   elementValue: number[];
   show: boolean;
-  volume: boolean;
   ticking: boolean;
   startTime: number;
   endTime: number;

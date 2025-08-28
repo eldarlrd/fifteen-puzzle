@@ -111,7 +111,7 @@ export class Renderer {
             <button id='theme-btn' title='Theme' class='rounded cursor-pointer select-none bg-tile-600 py-4 min-w-14 font-bold drop-shadow-md transition-colors hover:bg-tile-700 font-righteous'>
               <i class='fa-solid fa-palette fa-fw fa-xl'></i>
             </button>
-            <button id='theme-btn' title='Rules' class='rounded cursor-pointer select-none bg-tile-600 py-4 min-w-14 font-bold drop-shadow-md transition-colors hover:bg-tile-700 font-righteous'>
+            <button id='controls-btn' title='Controls' class='rounded cursor-pointer select-none bg-tile-600 py-4 min-w-14 font-bold drop-shadow-md transition-colors hover:bg-tile-700 font-righteous'>
               <i class='fa-solid fa-circle-info fa-fw fa-xl'></i>
             </button>
             <button id='shuffle-btn' class='rounded cursor-pointer select-none bg-tile-600 px-6 py-4 font-bold drop-shadow-md transition-colors hover:bg-tile-700 md:text-lg font-righteous'>
@@ -123,11 +123,36 @@ export class Renderer {
         <section class='grid h-80 w-80 grid-cols-4 grid-rows-4 gap-1 rounded bg-tile-600 p-1 shadow-inner drop-shadow-md sm:h-96 sm:w-96 md:h-[32em] md:w-[32em]'>
         </section>
       </main>
+      
+      <div id='controls' class='fixed inset-0 z-10 flex hidden h-full w-full items-center justify-center bg-black/75'>
+        <section class='flex h-64 w-80 flex-col items-center justify-center gap-6 select-none text-white rounded-md bg-surface-400 drop-shadow-2xl md:h-80 md:w-96'>
+          <p class='select-none text-3xl text-white md:text-4xl font-righteous'>
+            Controls
+          </p>
+          <div class='grid grid-cols-[auto_auto_auto] text-center items-center gap-4'>
+            <div>
+              <i class='fa-solid fa-computer-mouse fa-fw fa-xl'></i>
+              <i class='fa-solid fa-keyboard fa-fw fa-xl'></i>
+              <i class='fa-solid fa-hand-pointer fa-fw fa-xl'></i>
+            </div>
+            <span class='font-bold'>⸺</span>
+            <span class='text-2xl'>Move</span>
+          
+            <i class='fa-solid fa-registered fa-fw fa-xl justify-self-end'></i>
+            <span class='font-bold'>⸺</span>
+            <span class='text-2xl'>Shuffle</span>
+          </div>
+
+          <button id='controls-back-btn' class='rounded cursor-pointer select-none bg-tile-600 px-6 py-4 text-lg font-bold drop-shadow-md transition-colors hover:bg-tile-700 md:py-5 md:text-xl font-righteous'>
+            Back
+          </button>
+        </section>
+      </div>
 
       <div id='modal' class='fixed inset-0 z-10 flex hidden h-full w-full items-center justify-center bg-black/75'>
         <section class='flex h-64 w-80 flex-col items-center justify-center gap-6 rounded-md bg-surface-400 drop-shadow-2xl md:h-80 md:w-96'>
           <p class='select-none text-3xl text-white md:text-4xl font-righteous'>
-            Puzzle Solved!
+            Solved!
           </p>
           <div class='flex flex-col items-center justify-center gap-6 text-white'>
             <figure aria-label='modal-tracker' class='flex select-none gap-6 rounded bg-tile-600 px-3.5 py-1 text-lg drop-shadow-md md:py-2 md:text-xl font-righteous'>
@@ -168,6 +193,8 @@ export class Renderer {
     appElement.innerHTML = this.createHtml();
     this.initTheme();
 
+    window.addEventListener('keydown', this.preventInteraction, true);
+
     document.getElementById('shuffle-btn')?.addEventListener('click', () => {
       this.game.reset();
     });
@@ -175,6 +202,8 @@ export class Renderer {
     document
       .getElementById('modal-shuffle-btn')
       ?.addEventListener('click', () => {
+        this.game.state.show = false;
+        this.updateDisplay();
         this.game.reset();
       });
 
@@ -186,6 +215,16 @@ export class Renderer {
       else root.removeAttribute('data-theme');
       localStorage.setItem('theme', next);
     });
+
+    document.getElementById('controls-btn')?.addEventListener('click', () => {
+      this.openControls();
+    });
+
+    document
+      .getElementById('controls-back-btn')
+      ?.addEventListener('click', () => {
+        this.closeControls();
+      });
 
     this.update();
   }
@@ -257,6 +296,39 @@ export class Renderer {
 
     if (this.game.state.show) modal.classList.remove('hidden');
     else modal.classList.add('hidden');
+  }
+
+  private isControlsOpen(): boolean {
+    const controls = document.getElementById('controls');
+
+    return !!controls && !controls.classList.contains('hidden');
+  }
+
+  private isSolvedOpen(): boolean {
+    const modal = document.getElementById('modal');
+
+    return !!modal && !modal.classList.contains('hidden');
+  }
+
+  private preventInteraction = (e: KeyboardEvent): void => {
+    if (this.isControlsOpen() || this.isSolvedOpen()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  };
+
+  private openControls(): void {
+    const controls = document.getElementById('controls');
+
+    if (!controls) return;
+    controls.classList.remove('hidden');
+  }
+
+  private closeControls(): void {
+    const controls = document.getElementById('controls');
+
+    if (!controls) return;
+    controls.classList.add('hidden');
   }
 
   private initTheme(): void {

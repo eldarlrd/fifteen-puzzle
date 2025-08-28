@@ -15,7 +15,6 @@ export class Game {
       orderedIndex: [],
       elementValue: [],
       show: false,
-      volume: false,
       ticking: false,
       startTime: 0,
       endTime: 0,
@@ -27,7 +26,7 @@ export class Game {
 
     this.renderCallback = renderCallback;
     this.timer = new Timer(this.state, this.renderCallback);
-    this.audioManager = new AudioManager(this.state);
+    this.audioManager = new AudioManager();
   }
 
   public initialize(): void {
