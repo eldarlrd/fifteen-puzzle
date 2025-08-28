@@ -20,6 +20,8 @@
 
 import { Game } from '@/board/game.ts';
 import { Renderer } from '@/board/render.ts';
+import '@fontsource/righteous';
+import '../tailwind.config.css';
 
 // Register a Service Worker
 const registerSW = (): void => {

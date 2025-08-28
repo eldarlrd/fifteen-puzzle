@@ -1,4 +1,4 @@
-import solvedAudio from '@/assets/solved.opus';
+import solvedAudio from '@/assets/sfx/solved.opus';
 import { type GameState } from '@/site/globals.ts';
 
 export class AudioManager {

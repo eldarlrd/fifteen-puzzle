@@ -64,10 +64,4 @@ const generatePuzzle = (): number[] => {
   return tiles;
 };
 
-export {
-  formatTime,
-  shuffleArray,
-  isSolvable,
-  getAdjacentPositions,
-  generatePuzzle
-};
+export { formatTime, getAdjacentPositions, generatePuzzle };

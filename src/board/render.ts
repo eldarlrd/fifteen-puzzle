@@ -96,7 +96,7 @@ export class Renderer {
           <a class='flex items-center rounded justify-center gap-1 text-center transition-transform hover:scale-110' 
              title='Source' target='_blank' rel='author external noreferrer' 
              href='https://github.com/eldarlrd/fifteen-puzzle'>
-            eldarlrd
+             <i class='fa-brands fa-github fa-fw'></i> eldarlrd
           </a>
         </p>
       </footer>

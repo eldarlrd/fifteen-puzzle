@@ -7,6 +7,7 @@ export default defineConfig({
   base: '/fifteen-puzzle/',
   resolve: { alias: { '@': '/src' } },
   plugins: [
+    tailwindcss(),
     VitePWA({
       srcDir: 'src',
       filename: 'sw.ts',
@@ -17,7 +18,6 @@ export default defineConfig({
       injectManifest: {
         globPatterns: ['**/*.{html,css,js,png,svg,opus,woff2,webmanifest}'],
       },
-    }),
-    tailwindcss()
+    })
   ]
 });
