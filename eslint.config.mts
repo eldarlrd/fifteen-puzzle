@@ -41,7 +41,6 @@ export default tseslint.config({
     'no-relative-import-paths': noRelativeImportPaths,
   },
   rules: {
-    '@typescript-eslint/no-unsafe-call': 0,
     '@typescript-eslint/no-unused-vars': 2,
     '@typescript-eslint/explicit-member-accessibility': 2,
     '@typescript-eslint/explicit-function-return-type': 2,

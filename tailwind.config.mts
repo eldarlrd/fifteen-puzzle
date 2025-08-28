@@ -5,7 +5,7 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: { main: 'Righteous, sans' }
+      fontFamily: { righteous: 'Righteous, sans' }
     }
   }
 }
