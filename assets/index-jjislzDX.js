@@ -4,7 +4,7 @@
       hover:scale-95 sm:text-5xl md:text-6xl font-righteous
       ${s?"invisible":""}
       ${n?"bg-correct-400":"bg-tile-400"}
-    `.trim().replace(/\s+/g," "),t.textContent=s?"":e.toString(),s||t.addEventListener("click",()=>{this.slideIfInLine(e)||this.game.moveTile(e)}),t}slideIfInLine(e){const t=this.game.state.elementValue,s=Math.sqrt(t.length)|0,n=t.indexOf(e),i=t.indexOf(l);if(n<0||i<0)return!1;const r=~~(n/s)===~~(i/s),d=n%s===i%s;if(!r&&!d)return!1;const p=r?n<i?-1:1:n<i?-s:s,g=this.game.state.moves;let m=!1;for(;this.game.state.elementValue.indexOf(l)!==n;){const f=this.game.state.elementValue,u=f.indexOf(l)+p;if(u<0||u>=f.length)return!1;const x=f[u];this.game.moveTile(x),m=!0}return m&&(this.game.state.moves=g+1,this.updateDisplay()),m}createHtml(){return`
+    `.trim().replace(/\s+/g," "),t.textContent=s?"":e.toString(),s||t.addEventListener("click",()=>{this.slideIfInLine(e)||this.game.moveTile(e)}),t}slideIfInLine(e){const t=this.game.state.elementValue,s=Math.sqrt(t.length)|0,n=t.indexOf(e),i=t.indexOf(l);if(n<0||i<0)return!1;const r=~~(n/s)===~~(i/s),d=n%s===i%s;if(!r&&!d)return!1;const p=r?n<i?-1:1:n<i?-s:s,g=this.game.state.moves;let m=!1;for(;this.game.state.elementValue.indexOf(l)!==n;){const u=this.game.state.elementValue,f=u.indexOf(l)+p;if(f<0||f>=u.length)return!1;const x=u[f];this.game.moveTile(x),m=!0}return m&&(this.game.state.moves=g+1,this.updateDisplay()),m}createHtml(){return`
       <header>
         <h1 class='m-6 select-none text-center text-4xl font-bold text-white drop-shadow-xl sm:text-5xl md:text-6xl font-righteous'>
           Fifteen Puzzle
@@ -16,7 +16,7 @@
           <figure aria-label='tracker' class='flex select-none gap-6 rounded bg-tile-600 px-3.5 py-1 drop-shadow-md md:text-lg font-righteous'>
             <time class='text-center font-bold'>
               <figcaption>Time</figcaption>
-              <p class='min-w-max'>${h(this.game.state.minutes,this.game.state.seconds)}</p>
+              <p class='w-12 tabular-nums'>${h(this.game.state.minutes,this.game.state.seconds)}</p>
             </time>
             <time class='text-center font-bold'>
               <figcaption>Moves</figcaption>
@@ -75,7 +75,7 @@
             <figure aria-label='modal-tracker' class='flex select-none gap-6 rounded bg-tile-600 px-3.5 py-1 text-lg drop-shadow-md md:py-2 md:text-xl font-righteous'>
               <time class='text-center font-bold'>
                 <figcaption>Time</figcaption>
-                <p class='min-w-max'>${h(this.game.state.minutes,this.game.state.seconds)}</p>
+                <p class='w-12 tabular-nums'>${h(this.game.state.minutes,this.game.state.seconds)}</p>
               </time>
               <time class='text-center font-bold'>
                 <figcaption>Moves</figcaption>
@@ -117,4 +117,4 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with Fifteen Puzzle. If not, see <https://www.gnu.org/licenses/>.
- */const L=()=>{"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("/fifteen-puzzle/sw.js",{scope:"/fifteen-puzzle/"}).catch(console.error)})},C=()=>{const o=new k(()=>{e.update()}),e=new T(o);e.render(),o.initialize(),L(),document.addEventListener("keydown",t=>{o.handleKeyPress(t)})};document.addEventListener("DOMContentLoaded",C);console.log("Now impossible to get the 14-15 one!");
+ */const L=()=>{"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("/fifteen-puzzle/sw.js",{scope:"/fifteen-puzzle/"}).catch(console.error)})},C=()=>{const o=new k(()=>{e.update()}),e=new T(o);e.render(),o.initialize(),L(),document.addEventListener("keydown",t=>{o.handleKeyPress(t)})};document.addEventListener("DOMContentLoaded",C);console.log("🤓 Now impossible to get the 14-15 one!");
