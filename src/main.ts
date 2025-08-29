@@ -31,7 +31,9 @@ const registerSW = (): void => {
         .register('/fifteen-puzzle/sw.js', {
           scope: '/fifteen-puzzle/'
         })
-        .catch(console.error);
+        .catch((error: unknown) => {
+          if (error instanceof Error) console.error(error);
+        });
     });
 };
 
